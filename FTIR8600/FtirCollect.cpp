@@ -82,14 +82,21 @@ void CFtirCollect::CollectSample(CString cstrParameters)
 {
 	AfxMessageBox(_T("Testing : CollectSample."));
 	LRESULT copyDataResult;			//copyDataResult has value returned by other app
-	CWnd * pWndMilas = CWnd::FindWindow(NULL, _T("MILAS"));
 
+	CString cstrWindow0 =  _T("MILAS");
+	CString cstrWindow1;
+
+	CWnd * pWndMilas = CWnd::FindWindow(NULL, cstrWindow0);
+	for (int i = 1; i < 20 && !pWndMilas; i++)
+	{
+		cstrWindow1.Format(_T("MILAS - [´°¿Ú-%d]"), i);
+		pWndMilas = CWnd::FindWindow(NULL, cstrWindow1);
+	}
 	if (!pWndMilas)
 	{
 		AfxMessageBox(_T("Error : Please check if FTIR8600 (MILAS) is running."));
 		return;
 	}
-	
 	COPYDATASTRUCT cpd;
 	cpd.dwData = 0;
 	cpd.cbData = cstrParameters.GetLength() + sizeof(wchar_t);             //data length
