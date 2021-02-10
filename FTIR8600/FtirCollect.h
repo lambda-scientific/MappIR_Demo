@@ -15,8 +15,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public :
-	void CollectBack(CString cstrFilename);
-	void CollectSample(CString cstrFilename, CString cstrPath);
+	void CollectBack(CString cstrParameters);
+	void CollectSample(CString cstrParameters);
 };
 
 
